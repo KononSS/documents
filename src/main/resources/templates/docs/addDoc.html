@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Addition</title>
+</head>
+<body>
+Добавление документа:
+
+<form th:method="post" th:action="@{/reestr/addDoc}" th:object="${document}">
+    <label for="documentNumber">Введите номер документа:</label>
+    <input type="number" th:field="*{documentNumber}" id="documentNumber">
+    <div style="color: red" th:if="${#fields.hasErrors('documentNumber')}" th:errors="*{documentNumber}">DocumentNumber Error</div>
+    <br>
+    <label for="name">Введите название документа:</label>
+    <input type="text" th:field="*{name}" id="name">
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <br>
+    <label for="creationDate">Введите дату создания:</label>
+    <input type="text" th:field="*{creationDate}" id="creationDate">
+    <div style="color: red" th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}">CreationDate Error</div>
+    <br>
+    <label for="documentType">Введите тип документа:</label>
+    <input type="text" th:field="*{documentType}" id="documentType">
+    <div style="color: red" th:if="${#fields.hasErrors('documentType')}" th:errors="*{documentType}">DocumentType Error</div>
+    <br>
+    <input type="submit" value="Добавить документ">
+    <hr>
+</form>
+<form action="/reestr">
+    <input type="submit" value="Вернуться на главную страницу"/>
+</form>
+
+</body>
+</html>

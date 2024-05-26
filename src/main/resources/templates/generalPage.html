@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+
+</form>
+Поиск по имени, номеру или типу:
+<form th:method="POST" th:action="@{/reestr/search}">
+    <label for="name">Введите поисковой запрос: </label>
+    <input type="text" id="name" name="name"/>
+    <br/>
+    <input type="submit" value="Искать!"/>
+</form>
+
+<div th:if="${document}">
+    <div th:if="${document.isEmpty()}">
+        <span>Документы не найдены</span>
+    </div>
+
+    <hr style="border-style: solid; border-width: 5px; color: black; background-color: lightgrey;">
+
+    <p><b>Реестр документов:</b></p>
+    <div th:each="documents : ${document}">
+        <p th:text="${documents.getDocumentNumber() + ', ' + documents.getName() + ', ' + documents.getCreationDate() + ', ' + documents.getDocumentType()}">documents</p>
+        <hr/>
+    </div>
+</div>
+
+<form action="/reestr">
+    <input type="submit" value="Отобразить все документы"/>
+</form>
+
+<form action="/reestr/addDoc">
+    <input type="submit" value="Добавить документ"/>
+</form>
+
+<form action="/reestr">
+    <input name="sort_by_number" type="hidden" value="true">
+    <input type="submit" value="Сортировать по номеру документа"/>
+</form>
+
+<form action="/reestr">
+    <input name="sort_by_number" type="hidden" value="false">
+    <input type="submit" value="Отменить сортировку"/>
+</form>
+
+</body>
+</html>
